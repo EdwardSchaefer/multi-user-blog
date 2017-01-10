@@ -5,6 +5,8 @@ securely stored with a hashing algorithm. Once they are logged in, they can
 like other user's posts, and edit and delete their own. A registered user can 
 comment on any post. 
 
+The blog is currently active at the following URL:
+https://multi-user-blog-155223.appspot.com/blog
 
 #List of files
 --------------
@@ -33,5 +35,6 @@ comment on any post.
 
 #List of changes
 ----------------
+	*1/10/2017: Added URL of active blog to README.MD
 	*1/9/17: Removed "application" and "version" fields from app.yaml, as they
 	are no longer supported by Google App Engine
