@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Edit Post</h2>
+  <div class="post-block">
+    <form method="post">
+      <label>
+        <div>subject</div>
+        <input class="edit-post-subject-box" type="text" name="subject" value="{{post.subject}}">
+      </label>
+
+      <label>
+        <div>blog</div>
+        <textarea class="edit-post-content-box" name="content" value="{{post.content}}">{{post.content}}</textarea>
+      </label>
+
+      <div class="error">{{error}}</div>
+
+      <input type="submit">
+      <div class="cancel-button">
+        <a class="cancel-button" href="/blog">cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

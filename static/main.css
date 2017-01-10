@@ -1,0 +1,149 @@
+body {
+    position: relative;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+
+    width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    color: #333;
+    background-color: #CCFFCC;
+}
+
+.login-area {
+    font-size: 13px;
+    color: gray;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.login-link {
+    color: gray;
+    text-decoration: none;
+}
+
+.login-link:visited {
+    color: gray;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+}
+
+label {
+  display: block;
+  font-size: 20px;
+}
+
+label + label {
+    margin-top: 20px;
+}
+
+input[type=text] {
+    width: 500px;
+    font-size: 20px;
+    padding: 2px;
+    font-family: monospace;
+}
+
+input[type=submit] {
+  font-size: 24px;
+}
+
+.main-title {
+    display: block;
+    color: #222;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.post-heading {
+    position: relative;
+    border-bottom: 3px solid #666;
+}
+
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.post-date {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.post-content {
+    margin-top: 5px;
+}
+
+.post-author {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.new-post-subject-box{
+    background-color: #CCFFCC;
+}
+
+.new-post-content-box{
+    width: 500px;
+    height: 400px;
+    font-size: 17px;
+    font-family: monospace;
+    background-color: #CCFFCC;
+}
+
+.edit-post-subject-box {
+    background-color: #CCFFCC;
+}
+
+.edit-post-content-box{
+    width: 500px;
+    height: 400px;
+    font-size: 17px;
+    font-family: monospace;
+    background-color: #CCFFCC;
+}
+
+.comment-box{
+    width: 445px;
+    height: 100px;
+    font-size: 17px;
+    font-family: monospace;
+    background-color: #CCFFCC;
+}
+
+.comment-box-holder{
+    padding-left: 20px;
+    background-color: #99CC99;
+}
+
+.comment-content {
+    padding-left: 10px;
+    background-color: #99CC99;
+}
+
+.post-block {
+    padding:20px;
+    background-color: #AADDAA;
+}
+
+.controls {
+    background-color: #99CC99;
+    padding: 20px;
+}

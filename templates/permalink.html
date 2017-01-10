@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="post-block">
+  {{p.render() | safe}}
+      {# comments #}
+    <div class="comment-content">
+    {% for c in comments %}
+      {% if p.key().id() == c.parentKey %}
+        {{ c.render() | safe }}
+      {% endif %}
+    {% endfor %}
+    </div>
+  <form method="post" class="comment-box-holder">
+  <br>
+  <hr>
+    {# User Controls #}
+  <div class="controls">
+  {% if user.name %}
+    {% if user.name == p.authorName %}
+      <div class="delete-button">
+        <a class="delete-button {{p.key()}}" href="/delete/{{p.key().id()}}">Delete</a>
+      </div>
+      <div class="edit-button">
+        <a class="edit-button" href="/edit/{{p.key().id()}}">Edit</a>
+      </div>
+    {% else %}
+      <div class="like-button">
+        {% if user.key().id() in p.likes %}
+          <a class="like button {{p.key()}}" href="/like/{{p.key().id()}}">Unlike</a>
+        {% else %}
+          <a class="like button {{p.key()}}" href="/like/{{p.key().id()}}">Like</a>
+        {% endif %}
+      </div>
+    {% endif %}
+    Commenting as {{user.name}}:
+      <label>
+        <textarea class="comment-box" name="comment"></textarea>
+      </label>
+    <input type="submit">
+  {% endif %}
+  </div>
+  </form>
+</div>
+{% endblock %}

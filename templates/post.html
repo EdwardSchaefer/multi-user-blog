@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<div class="post">
+  <div class="post-heading">
+    <div class="post-title">
+      <a class="post-title" href="/blog/{{p.key().id()}}">{{p.subject}}</a>
+    </div>
+
+    <div class=author>
+      Posted by: {{p.authorName}}
+    </div>
+
+    <div class="post-date">
+      {{p.created.strftime("%b %d, %Y")}}
+    </div>
+
+    <div class="likes">
+      {{p.likes|length}} likes
+    </div>
+  </div>
+
+  <div class="post-content">
+    {{p._render_text | safe}}
+  </div>
+<BR>
+</div>
+</html>
