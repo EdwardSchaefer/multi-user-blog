@@ -30,3 +30,8 @@ comment on any post.
 	*app.yaml: The yaml configuration file for the app. This file is required 
 	for Google App engine applications.
 	*README.md: this readme file
+
+#List of changes
+----------------
+	*1/9/17: Removed "application" and "version" fields from app.yaml, as they
+	are no longer supported by Google App Engine
