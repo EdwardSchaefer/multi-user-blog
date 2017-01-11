@@ -238,23 +238,23 @@ class NewPost(BlogHandler):
     def post(self):
         if not self.user:
             self.redirect('/blog')
-
-        subject = self.request.get('subject')
-        content = self.request.get('content')
-        authorName = str(self.user.name)
-        likes = []
-
-        if subject and content:
-            #define p variable as Post() object with attributes
-            p = Post(parent=blog_key(), subject=subject, content=content,
-                     authorName=authorName, likes=likes)
-            #store p in the database
-            p.put()
-            #redirect to PostPage/permalink.html
-            self.redirect('/blog/%s' % str(p.key().id()))
         else:
-            error = "subject and content, please!"
-            self.render("newpost.html", subject=subject, content=content, error=error)
+            subject = self.request.get('subject')
+            content = self.request.get('content')
+            authorName = str(self.user.name)
+            likes = []
+
+            if subject and content:
+                #define p variable as Post() object with attributes
+                p = Post(parent=blog_key(), subject=subject, content=content,
+                         authorName=authorName, likes=likes)
+                #store p in the database
+                p.put()
+                #redirect to PostPage/permalink.html
+                self.redirect('/blog/%s' % str(p.key().id()))
+            else:
+                error = "subject and content, please!"
+                self.render("newpost.html", subject=subject, content=content, error=error)
 
 #Edit a post
 class Edit(BlogHandler):
