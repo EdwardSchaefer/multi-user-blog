@@ -273,9 +273,9 @@ class Edit(BlogHandler):
             if post.authorName == str(self.user.name):
                 self.render("edit.html", post=post)
             else:
-                self.redirect('blog')
+                self.redirect('/blog')
         else:
-            self.redirect('blog')
+            self.redirect('/blog')
 
     def post(self, post_id):
         if self.user:
@@ -296,18 +296,18 @@ class Edit(BlogHandler):
                         #store p in the database
                         p.put()
                     else:
-                        self.redirect('blog')
+                        self.redirect('/blog')
                         return
                     #redirect to PostPage/permalink.html
                     self.redirect('/blog/%s' % str(p.key().id()))
                 else:
-                    self.redirect('blog')
+                    self.redirect('/blog')
                     return
             else:
                 error = "subject and content, please!"
                 self.render("edit.html", subject=subject, content=content, error=error)
         else:
-            self.redirect('blog')
+            self.redirect('/blog')
             return
 
 #The following three variables are checked with regular
@@ -418,21 +418,28 @@ class Delete(BlogHandler):
 #Likes a post
 class Like(BlogHandler):
     def get(self, post_id):
-        key = db.Key.from_path('Post', int(post_id), parent=blog_key())
-        post = db.get(key)
-        #check if post.likes already has userID
-        #if yes, remove (unlike), if no, add
-        if self.user.key().id() in post.likes:
-            post.likes.remove(int(self.user.key().id()))
+        #make sure the user is signed in
+        if self.user:
+            key = db.Key.from_path('Post', int(post_id), parent=blog_key())
+            post = db.get(key)
+                #if the post
+            if post:
+                #check if post.likes already has userID
+                #if yes, remove (unlike), if no, add
+                if self.user.key().id() in post.likes:
+                    post.likes.remove(int(self.user.key().id()))
+                else:
+                    post.likes.append(int(self.user.key().id()))
+                post.put()
+                #refresh 'post' to show the like instantly
+                post = db.get(key)
+                self.redirect('/blog')
+                return
+            else:
+                self.error(404)
+                return
         else:
-            post.likes.append(int(self.user.key().id()))
-        post.put()
-        #refresh 'post' to show the like instantly
-        post = db.get(key)
-        self.redirect('/blog')
-
-        if not post:
-            self.error(404)
+            self.redirect('/blog')
             return
 
 #This part of the webapp2 framework directs the browser to

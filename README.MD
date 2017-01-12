@@ -35,6 +35,8 @@ https://multi-user-blog-155223.appspot.com/blog
 
 #List of changes
 ----------------
-	*1/10/2017: Added URL of active blog to README.MD
+	*1/12/17: Added more authorization controls for Like get function
+	*1/11/17: Added more authorization controls for Edit get and post functions
+	*1/10/17: Added URL of active blog to README.MD
 	*1/9/17: Removed "application" and "version" fields from app.yaml, as they
 	are no longer supported by Google App Engine
