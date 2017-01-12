@@ -259,38 +259,56 @@ class NewPost(BlogHandler):
 #Edit a post
 class Edit(BlogHandler):
     def get(self, post_id):
-        #get the key from the post ID and define it as key
-        key = db.Key.from_path('Post', int(post_id), parent=blog_key())
-        #get the post object from the key
-        post = db.get(key)
-
-        if not post:
-            self.error(404)
-            return
-
-        self.render("edit.html", post=post)
+        #if the user is logged in
+        if self.user:
+            #get the key from the post ID and define it as key
+            key = db.Key.from_path('Post', int(post_id), parent=blog_key())
+            #get the post object from the key
+            post = db.get(key)
+            #if the post doesn't exist
+            if not post:
+                self.error(404)
+                return
+            #if the user owns the post
+            if post.authorName == str(self.user.name):
+                self.render("edit.html", post=post)
+            else:
+                self.redirect('blog')
+        else:
+            self.redirect('blog')
 
     def post(self, post_id):
-        if not self.user:
-            self.redirect('blog')
-        subject = self.request.get('subject')
-        content = self.request.get('content')
-        authorName = str(self.user.name)
+        if self.user:
+            subject = self.request.get('subject')
+            content = self.request.get('content')
+            authorName = str(self.user.name)
 
-        if subject and content:
-            #Get the key of the post
-            key = db.Key.from_path('Post', int(post_id), parent=blog_key())
-            #Define p variable as Post() object with attributes, including the key
-            p = Post(parent=blog_key(), subject=subject, content=content,
-                     authorName=authorName, key=key)
-            #store p in the database
-            p.put()
-            #redirect to PostPage/permalink.html
-            self.redirect('/blog/%s' % str(p.key().id()))
+            if subject and content:
+                #Get the key of the post
+                key = db.Key.from_path('Post', int(post_id), parent=blog_key())
+                #if the post exists
+                if key:
+                    #Define p variable as Post() object with attributes, including the key
+                    p = Post(parent=blog_key(), subject=subject, content=content,
+                             authorName=authorName, key=key)
+                    #if the user owns the post
+                    if p.authorName == str(self.user.name):
+                        #store p in the database
+                        p.put()
+                    else:
+                        self.redirect('blog')
+                        return
+                    #redirect to PostPage/permalink.html
+                    self.redirect('/blog/%s' % str(p.key().id()))
+                else:
+                    self.redirect('blog')
+                    return
+            else:
+                error = "subject and content, please!"
+                self.render("edit.html", subject=subject, content=content, error=error)
         else:
-            error = "subject and content, please!"
-            self.render("edit.html", subject=subject, content=content, error=error)
-
+            self.redirect('blog')
+            return
 
 #The following three variables are checked with regular
 #expressions before they are used in the Signup handler
