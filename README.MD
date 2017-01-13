@@ -54,6 +54,7 @@ comment on any post.
 ----------------
 	*1/13/17:
 	  *Added edit and delete functionality for comments
+	  *Applied Jinja templates to login and sign up pages
 	*1/12/17: 
 	  * Added more authorization controls for Like get function
 	  * Added more authorization controls for Delete get function
