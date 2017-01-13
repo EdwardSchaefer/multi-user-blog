@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Edit Comment</h2>
+  <div class="post-block">
+    <form method="post">
+      <label>
+        <div>comment</div>
+        <input class="edit-post-subject-box" type="text" name="comment" value="{{comment.comment}}">
+      </label>
+
+      <div class="error">{{error}}</div>
+
+      <input type="submit">
+      <div class="cancel-button">
+        <a class="cancel-button" href="/blog">cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

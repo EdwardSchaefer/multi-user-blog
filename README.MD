@@ -33,6 +33,8 @@ comment on any post.
 	or permalink.html
 	*templates/edit.html: Renders the edit form for users to edit their own 
 	posts
+	*templates/editcomment.html: Renders the edit form for users to edit their own 
+	posts
 	*templates/front.html: Displays all of the posts, with the most recent 
 	first
 	*templates/login-form.html: A form for users to login to their accounts
@@ -50,6 +52,8 @@ comment on any post.
 
 #List of Changes
 ----------------
+	*1/13/17:
+	  *Added edit and delete functionality for comments
 	*1/12/17: 
 	  * Added more authorization controls for Like get function
 	  * Added more authorization controls for Delete get function

@@ -278,6 +278,7 @@ class Edit(BlogHandler):
             self.redirect('/blog')
 
     def post(self, post_id):
+        #if the user is logged in
         if self.user:
             subject = self.request.get('subject')
             content = self.request.get('content')
@@ -306,6 +307,64 @@ class Edit(BlogHandler):
             else:
                 error = "subject and content, please!"
                 self.render("edit.html", subject=subject, content=content, error=error)
+        else:
+            self.redirect('/blog')
+            return
+
+#Edit a comment
+class EditComment(BlogHandler):
+    def get(self, comment_id):
+        #if the user is logged in
+        if self.user:
+            #get the key from the comment ID and define it as key
+            key = db.Key.from_path('Comment', int(comment_id), parent=blog_key())
+            #get the comment object from the key
+            comment = db.get(key)
+            #if the comment doesn't exist
+            if not comment:
+                self.error(404)
+                return
+            #if the user owns the comment
+            if comment.authorName == str(self.user.name):
+                self.render("editcomment.html", comment=comment)
+            else:
+                self.redirect('/blog')
+        else:
+            self.redirect('/blog')
+
+    def post(self, comment_id):
+        #if the user is logged in
+        if self.user:
+            comment = self.request.get('comment')
+            authorName = str(self.user.name)
+
+            if comment:
+                #Get the key of the comment
+                key = db.Key.from_path('Comment', int(comment_id), parent=blog_key())
+                #get the comment object from the key
+                commentObj = db.get(key)
+                #get parentKey from commentObj
+                parentKey = int(commentObj.parentKey)
+                #if the comment exists
+                if key:
+                    #Define c variable as Comment() object with attributes, including the key
+                    c = Comment(parent=blog_key(), comment=comment, parentKey = parentKey, 
+                             authorName=authorName, key=key)
+                    #if the user owns the comment
+                    if c.authorName == str(self.user.name):
+                        #store p in the database
+                        c.put()
+                    else:
+                        self.redirect('/blog')
+                        return
+                    #redirect to front
+                    self.redirect('/blog')
+                else:
+                    self.redirect('/blog')
+                    return
+            else:
+                error = "content, please!"
+                self.render("editcomment.html", comment=comment, error=error)
         else:
             self.redirect('/blog')
             return
@@ -422,6 +481,25 @@ class Delete(BlogHandler):
             self.error(404)
             return
 
+#Deletes a comment
+class DeleteComment(BlogHandler):
+    def get(self, comment_id):
+        #if the user is logged in
+        if self.user:
+            key = db.Key.from_path('Comment', int(comment_id), parent=blog_key())
+            comment = db.get(key)
+            #if the comment exists and the user owns it
+            if comment and comment.authorName == str(self.user.name):
+                comment.delete()
+                self.redirect('/blog')
+                return
+            else:
+                self.redirect('/blog')
+                return
+        else:
+            self.error(404)
+            return
+
 #Likes a post
 class Like(BlogHandler):
     def get(self, post_id):
@@ -459,5 +537,8 @@ app = webapp2.WSGIApplication([('/', MainPage),
                                ('/login', Login),
                                ('/logout', Logout),
                                ('/delete/([0-9]+)', Delete),
+                               ('/deletecomment/([0-9]+)', DeleteComment),
                                ('/like/([0-9]+)', Like),
-                               ('/edit/([0-9]+)', Edit)], debug=True)
+                               ('/edit/([0-9]+)', Edit),
+                               ('/editcomment/([0-9]+)', EditComment)], 
+                               debug=True)

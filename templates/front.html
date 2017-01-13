@@ -12,6 +12,14 @@
   {% for c in comments %}
     {% if p.key().id() == c.parentKey %}
       {{ c.render() | safe }}
+      {% if user.name == c.authorName %}
+      <div class="delete-button">
+        <a class="delete-button" href="/deletecomment/{{c.key().id()}}">Delete</a>
+      </div>
+      <div class="edit-button">
+        <a class="edit-button" href="/editcomment/{{c.key().id()}}">Edit</a>
+      </div>
+      {% endif %}
     {% endif %}
   {% endfor %}
   </div>
