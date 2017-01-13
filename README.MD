@@ -5,10 +5,25 @@ securely stored with a hashing algorithm. Once they are logged in, they can
 like other user's posts, and edit and delete their own. A registered user can 
 comment on any post. 
 
-The blog is currently active at the following URL:
-https://multi-user-blog-155223.appspot.com/blog
+#How to Use the Application
+---------------------------
 
-#List of files
+	The blog is currently active at the following URL:
+	https://multi-user-blog-155223.appspot.com/blog
+
+	The blog can also be used by downloading and installing the Google App 
+	Engine SDK. Once the SDK is installed, download or clone the project, 
+	then run the command 'dev_appserver.py .' from the command line. This 
+	will initialize a local development server. Type 'localhost:8080' in a 
+	browser to view the website. The command line window will specify the 
+	port being used for the local development server. If it is not 8080, 
+	replace '8080' in 'localhost:8080' with whatever port the server is 
+	being run on. Datastore and other information can be viewed at 
+	'localhost:8000', or whichever port is specified as the 'admit server' 
+	in the commandline window.
+
+
+#List of Files
 --------------
 
 	*blog.py: The main python file, defining the functions of the blog
@@ -33,9 +48,12 @@ https://multi-user-blog-155223.appspot.com/blog
 	for Google App engine applications.
 	*README.md: this readme file
 
-#List of changes
+#List of Changes
 ----------------
-	*1/12/17: Added more authorization controls for Like get function
+	*1/12/17: 
+	  * Added more authorization controls for Like get function
+	  * Added more authorization controls for Delete get function
+	  * Expanded README.MD to include more detailed instuctions on usage
 	*1/11/17: Added more authorization controls for Edit get and post functions
 	*1/10/17: Added URL of active blog to README.MD
 	*1/9/17: Removed "application" and "version" fields from app.yaml, as they

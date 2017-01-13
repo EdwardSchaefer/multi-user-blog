@@ -406,12 +406,19 @@ class Logout(BlogHandler):
 #Deletes a post
 class Delete(BlogHandler):
     def get(self, post_id):
-        key = db.Key.from_path('Post', int(post_id), parent=blog_key())
-        post = db.get(key)
-        post.delete()
-        self.redirect('/blog')
-
-        if not post:
+        #if the user is logged in
+        if self.user:
+            key = db.Key.from_path('Post', int(post_id), parent=blog_key())
+            post = db.get(key)
+            #if the post exists and the user owns it
+            if post and post.authorName == str(self.user.name):
+                post.delete()
+                self.redirect('/blog')
+                return
+            else:
+                self.redirect('/blog')
+                return
+        else:
             self.error(404)
             return
 
