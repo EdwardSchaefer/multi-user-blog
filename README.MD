@@ -19,7 +19,7 @@ comment on any post.
 	port being used for the local development server. If it is not 8080, 
 	replace '8080' in 'localhost:8080' with whatever port the server is 
 	being run on. Datastore and other information can be viewed at 
-	'localhost:8000', or whichever port is specified as the 'admit server' 
+	'localhost:8000', or whichever port is specified as the 'admin server' 
 	in the commandline window.
 
 
