@@ -52,6 +52,8 @@ comment on any post.
 
 #List of Changes
 ----------------
+	*1/14/17
+	  *CSS styling for login and sign-up pages
 	*1/13/17:
 	  *Added edit and delete functionality for comments
 	  *Applied Jinja templates to login and sign up pages

@@ -51,7 +51,6 @@ label + label {
 }
 
 input[type=text] {
-    width: 500px;
     font-size: 20px;
     padding: 2px;
     font-family: monospace;
@@ -94,6 +93,21 @@ input[type=submit] {
 .post-author {
     font-size: 12px;
     font-weight: bold;
+}
+
+.input-style {
+    align-self: left;
+    height: 40px;
+}
+
+.input-box {
+    position: absolute;
+    left: 150px;
+    width: 200px;
+    height: 25px;
+    font-size: 17px;
+    font-family: monospace;
+    background-color: #CCFFCC;
 }
 
 .new-post-subject-box{

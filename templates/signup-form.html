@@ -17,55 +17,45 @@
     <div class="post-block">
     <h2>Signup</h2>
     <form method="post">
-      <table>
-        <tr>
-          <td class="label">
-            Username
-          </td>
-          <td>
-            <input type="text" name="username" value="{{username}}">
-          </td>
-          <td class="error">
-            {{error_username}}
-          </td>
-        </tr>
+      <div>
+        <div class="input-style">
+          Username
+          <input class="input-box" type="text" name="username" value="{{username}}">
+        </div>
+        <div class="error">
+          {{error_username}}
+        </div>
+      </div>
 
-        <tr>
-          <td class="label">
-            Password
-          </td>
-          <td>
-            <input type="password" name="password" value="">
-          </td>
-          <td class="error">
-            {{error_password}}
-          </td>
-        </tr>
+      <div>
+        <div class="input-style">
+          Password
+          <input class="input-box" type="password" name="password" value="">
+        </div>
+        <div class="error">
+          {{error_password}}
+        </div>
+      </tr>
 
-        <tr>
-          <td class="label">
-            Verify Password
-          </td>
-          <td>
-            <input type="password" name="verify" value="">
-          </td>
-          <td class="error">
-            {{error_verify}}
-          </td>
-        </tr>
+      <div>
+        <div class="input-style">
+          Verify Password
+          <input class="input-box" type="password" name="verify" value="">
+        </div>
+        <div class="error">
+          {{error_verify}}
+        </div>
+      </tr>
 
-        <tr>
-          <td class="label">
-            Email (optional)
-          </td>
-          <td>
-            <input type="text" name="email" value="{{email}}">
-          </td>
-          <td class="error">
-            {{error_email}}
-          </td>
-        </tr>
-      </table>
+      <div>
+        <div class="input-style">
+          Email (optional)
+          <input class="input-box" type="text" name="email" value="{{email}}">
+        </div>
+        <div class="error">
+          {{error_email}}
+        </div>
+      </tr>
 
       <input type="submit">
     </form>
