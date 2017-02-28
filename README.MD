@@ -1,9 +1,9 @@
 This application creates a multi-user blog using Python/webapp2 in 
-conjunction with Google App Engine as well as using Jinja2 templates and 
-css for styling. Users can sign up via the signup form. User passwords are 
-securely stored with a hashing algorithm. Once they are logged in, they can 
-like other user's posts, and edit and delete their own. A registered user can 
-comment on any post. 
+conjunction with Google App Engine as well as using the Flask framework, 
+Jinja2 templates, and css for styling. Users can sign up via the signup form. 
+User passwords are securely stored with a hashing algorithm. Once they are 
+logged in, they can like other user's posts, and edit and delete their own. A 
+registered user can comment on any post. 
 
 #How to Use the Application
 ---------------------------
@@ -52,7 +52,8 @@ comment on any post.
 
 #List of Changes
 ----------------
-	*1/14/17
+	*2/27/17: Minor changes to readme.md  
+	*1/14/17:
 	  *CSS styling for login and sign-up pages
 	*1/13/17:
 	  *Added edit and delete functionality for comments
